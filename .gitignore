@@ -1,3 +1,5 @@
 !/.idea/
 
 !/chromedriver_win32/
+!/ui/tests/test.xlsx
+!/ui/tests/azdarar_search_results.xlsx

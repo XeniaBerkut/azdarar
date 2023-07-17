@@ -1,6 +1,7 @@
 import xlsxwriter
 
-def write_to_excel(list):
+
+def write_advertisements_search_result_to_excel(list):
     with xlsxwriter.Workbook('azdarar_search_results.xlsx') as workbook:
         worksheet = workbook.add_worksheet()
 

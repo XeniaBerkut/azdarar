@@ -12,6 +12,7 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 logger.setLevel(logging.INFO)
 
+
 @pytest.fixture()
 def driver():
     logger.info("Running class setUp")
@@ -28,4 +29,3 @@ def driver():
 
     logger.info("Running class tearDown")
     driver.quit()
-

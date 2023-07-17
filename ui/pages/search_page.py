@@ -7,7 +7,8 @@ from selenium.webdriver.common.by import By
 
 logger = logging.getLogger()
 
-class SearchPage():
+
+class SearchPage:
 
     def __init__(self, driver: WebDriver):
         self.driver = driver
@@ -21,8 +22,3 @@ class SearchPage():
             logger.info('Collect links')
             links.append(results_list[i].get_attribute("href"))
         return links
-
-
-
-
-

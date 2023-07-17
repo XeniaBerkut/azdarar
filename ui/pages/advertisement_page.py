@@ -4,7 +4,7 @@ from ui.pages.base_page import BasePage
 logger = logging.getLogger()
 
 
-class AdPage(BasePage):
+class AdvertisementPage(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
 

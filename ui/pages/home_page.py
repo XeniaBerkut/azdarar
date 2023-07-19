@@ -13,8 +13,8 @@ class HomePage(BasePage):
         'search_button': ('ID', "search-submit")
     }
 
-    def search_home_page(self, staff):
+    def search_home_page(self, advertisement_search_string):
         logger.info('Enter data to search')
-        self.search_field.send_keys(staff)
+        self.search_field.send_keys(advertisement_search_string)
         logger.info('Click search button')
         self.search_button.click()

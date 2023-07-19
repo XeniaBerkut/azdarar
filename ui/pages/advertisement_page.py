@@ -13,9 +13,9 @@ class AdvertisementPage(BasePage):
     }
 
     def go_to_ad_page(self, link):
-        logger.info('Go to the add page')
+        # logger.info('Go to the add page')
         self.driver.get(link)
 
     def get_ad_text(self) -> str:
-        logger.info('Get ad text')
+        # logger.info('Get ad text')
         return self.ad_text.get_text()

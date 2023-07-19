@@ -1,5 +1,34 @@
-{
-  "advertisement": {
-    "ad_type": "աճուրդ-վաճառքի"
+[
+  {
+    "ad_type": "rescheduled_auction",
+    "ad_search_string": "չի կայացել"
+  },
+  {
+    "ad_type": "auction_sale",
+    "ad_search_string": "աճուրդ-վաճառքի"
+  },
+  {
+    "ad_type": "common_auction",
+    "ad_search_string": "աճուրդ"
+  },
+  {
+    "ad_type": "in_bankruptcy",
+    "ad_search_string": "սնանկության գործով"
+  },
+  {
+    "ad_type": "movable_estate",
+    "ad_search_string": "շարժական գույք"
+  },
+  {
+    "ad_type": "cars",
+    "ad_search_string": "Ավտոմեքենա"
+  },
+  {
+    "ad_type": "with_starting_price",
+    "ad_search_string": "մեկնարկային գին"
+  },
+  {
+    "ad_type": "were_reduced_before",
+    "ad_search_string": "նվազեցվել են նախորդ աճուրդի"
   }
-}
+]

@@ -1,0 +1,4 @@
+pytest==7.4.0
+selenium==4.10.0
+selenium-page-factory==2.6
+XlsxWriter==3.1.2

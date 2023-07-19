@@ -1,14 +1,15 @@
+import json
+import os
+import pytest
+from selenium.webdriver.chrome.webdriver import WebDriver
 from ui.pages.home_page import HomePage
 from ui.pages.search_page import SearchPage
 from ui.pages.advertisement_page import AdvertisementPage
 from helpers.spreadsheet_helpers import write_ads_search_result_to_excel
 from ui.entities.advertisement import Advertisement
-import json
-import os
-import pytest
 
 
-def get_data() -> list[Advertisement]:
+def get_data() -> list[dict]:
     json_path = os.path.join(os.path.dirname(__file__),
                              "test_data_search_advertisement.json")
     with open(json_path) as json_file:
@@ -17,7 +18,7 @@ def get_data() -> list[Advertisement]:
 
 
 @pytest.mark.parametrize("advertisement_data", get_data())
-def test_search(driver, advertisement_data):
+def test_search(driver: WebDriver, advertisement_data: dict):
 
     advertisement = Advertisement(**advertisement_data)
 

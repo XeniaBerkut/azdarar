@@ -25,7 +25,7 @@ def write_ads_search_result_to_html(advertisement_list: list[Advertisement], fil
     ad_number = 1
     for ad in advertisement_list:
         ads_html_file.write(f'<html>\n<head>\n<title> \n \
-               </title>\n</head> <body><h1 style="background-color:DodgerBlue;">{ad_number}. Search string for {ad.ad_type} TODO <br> <a href="{ad.ad_link}">{ad.ad_link}</a> <br></h1>\
+               </title>\n</head> <body><h1 style="background-color:DodgerBlue;">{ad_number}. Search string <b> {ad.ad_search_string} </b> <br> <a href="{ad.ad_link}">{ad.ad_link}</a> <br></h1>\
                \n<h2> {ad.ad_text}</u> </h2> <br> \n</body></html>')
         ad_number += 1
     ads_html_file.close()

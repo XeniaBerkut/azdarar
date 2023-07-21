@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 import pytest
 from selenium.webdriver.chrome.webdriver import WebDriver
@@ -13,7 +14,7 @@ from ui.entities.advertisement import Advertisement
 def get_data() -> list[dict]:
     json_path = os.path.join(os.path.dirname(__file__),
                              "test_data_search_advertisement.json")
-    with open(json_path) as json_file:
+    with open(json_path, encoding='utf-8') as json_file:
         data = json.load(json_file)
     return data
 
@@ -26,8 +27,9 @@ def test_search(driver: WebDriver, advertisement_data: dict):
     home_page: HomePage = HomePage(driver)
     search_page: SearchPage = SearchPage(driver)
     ad_page: AdvertisementPage = AdvertisementPage(driver)
+    logging.info(f'search string {advertisement.ad_search_string}')
     home_page.search_home_page(advertisement.ad_search_string)
-    advertisements_list = search_page.collect_results(advertisement, depth=31)
+    advertisements_list = search_page.collect_results(advertisement, depth=7)
     for ad in advertisements_list:
         ad_page.go_to_ad_page(ad.ad_link)
         ad_text = ad_page.get_ad_text()

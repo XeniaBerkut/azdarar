@@ -38,5 +38,9 @@
   {
     "ad_type": "residential",
     "ad_search_string": "բնակելի"
+  },
+  {
+    "ad_type": "residential_house",
+    "ad_search_string": "բնակելի տուն"
   }
 ]

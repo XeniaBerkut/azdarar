@@ -1,9 +1,5 @@
 [
   {
-    "ad_type": "residential_house",
-    "ad_search_string": "բնակելի տուն"
-  },
-  {
     "ad_type": "auction_apartment",
     "ad_search_string": "աճուրդ բնակարան"
   },
@@ -20,8 +16,8 @@
     "ad_search_string": "աճուրդ"
   },
   {
-    "ad_type": "in_bankruptcy",
-    "ad_search_string": "սնանկության գործով"
+    "ad_type": "bankruptcy",
+    "ad_search_string": "սնանկության"
   },
   {
     "ad_type": "movable_estate",
@@ -38,5 +34,9 @@
   {
     "ad_type": "was_reduced_before",
     "ad_search_string": "նվազեցվել են նախորդ աճուրդի"
+  },
+  {
+    "ad_type": "residential",
+    "ad_search_string": "բնակելի"
   }
 ]

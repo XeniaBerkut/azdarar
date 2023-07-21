@@ -1,5 +1,13 @@
 [
   {
+    "ad_type": "residential_house",
+    "ad_search_string": "բնակելի տուն"
+  },
+  {
+    "ad_type": "auction_apartment",
+    "ad_search_string": "աճուրդ բնակարան"
+  },
+  {
     "ad_type": "rescheduled_auction",
     "ad_search_string": "չի կայացել"
   },
@@ -28,7 +36,7 @@
     "ad_search_string": "մեկնարկային գին"
   },
   {
-    "ad_type": "were_reduced_before",
+    "ad_type": "was_reduced_before",
     "ad_search_string": "նվազեցվել են նախորդ աճուրդի"
   }
 ]

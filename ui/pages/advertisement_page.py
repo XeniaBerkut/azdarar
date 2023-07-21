@@ -9,7 +9,7 @@ class AdvertisementPage(BasePage):
         super().__init__(driver)
 
     locators = {
-        'ad_text': ('XPATH', '//*[@id="item-content"]/p')
+        'ad_text': ('ID', 'content')
     }
 
     def go_to_ad_page(self, link):
@@ -18,4 +18,5 @@ class AdvertisementPage(BasePage):
 
     def get_ad_text(self) -> str:
         # logger.info('Get ad text')
-        return self.ad_text.get_text()
+        # return self.ad_text.get_text()
+        return self.ad_text.getAttribute('outerHTML')

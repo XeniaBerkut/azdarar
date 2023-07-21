@@ -1,5 +1,5 @@
 import logging
-from datetime import date, timedelta, datetime
+from datetime import timedelta, datetime
 
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
@@ -21,14 +21,17 @@ class SearchPage:
         logger.info('Start to collect ads_list')
         depth_date = datetime.now() - timedelta(days=depth)
 
-        for i in range(100):
-            date_field = results_list[i].find_element(By.CLASS_NAME, 'dates')
+        for result in results_list:
+            date_field = result.find_element(By.CLASS_NAME, 'dates')
             ad_date = datetime.strptime(date_field.text, "%d.%m.%Y")
+            link_css_selector = 'h3 > a'
             if ad_date > depth_date:
+                logger.info(f"link {result.find_element(By.CSS_SELECTOR, link_css_selector).get_attribute('href')}")
                 ads_list.append(Advertisement(ad_type=advertisement.ad_type,
                                               ad_search_string=advertisement.ad_search_string,
-                                              ad_date=ad_date,
-                                              ad_link=results_list[i].find_element(By.XPATH, '//h3/a').get_attribute("href")))
-                # ads_list.append(results_list[i].find_element(By.XPATH, '//h3/a').get_attribute("href"))
+                                              ad_date=ad_date.strftime("%d.%m.%Y"),
+                                              ad_link=result.find_element(By.CSS_SELECTOR, link_css_selector)
+                                              .get_attribute("href")))
+
         logger.info('Finished to collect ads_list')
         return ads_list

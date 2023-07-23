@@ -27,13 +27,18 @@ def test_search(driver: WebDriver, advertisement_data: dict):
     home_page: HomePage = HomePage(driver)
     search_page: SearchPage = SearchPage(driver)
     ad_page: AdvertisementPage = AdvertisementPage(driver)
-    logging.info(f'search string {advertisement.ad_search_string}')
+    logging.info(f'Start search with search data {advertisement.ad_search_string}')
     home_page.search_home_page(advertisement.ad_search_string)
+    logging.info('Collect advertisements links for specified search data')
     advertisements_list = search_page.collect_results(advertisement, depth=7)
+    logging.info('Go to advertisements pages and collect advertisements outerTexts')
     for ad in advertisements_list:
         ad_page.go_to_ad_page(ad.ad_link)
         ad_text = ad_page.get_ad_text()
         ad.ad_text = ad_text
+    logging.info('Finished to collect advertisements texts')
+    logging.info('Write results to excel')
     write_ads_search_result_to_excel(advertisements_list, advertisement.ad_type)
+    logging.info('Write results to html file')
     write_ads_search_result_to_html(advertisements_list, advertisement.ad_type)
     assert advertisements_list != []

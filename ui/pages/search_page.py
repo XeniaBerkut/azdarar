@@ -14,13 +14,13 @@ class SearchPage:
         self.driver = driver
 
     def collect_results(self, advertisement, depth) -> list[Advertisement]:
-        logger.info('Collect results list')
+        logger.info('Collect search results list')
         main_form = self.driver.find_element(By.ID, 'content')
         results_list = main_form.find_elements(By.CLASS_NAME, 'items')
         ads_list = []
         depth_date = datetime.now() - timedelta(days=depth)
 
-        logger.info('Start to collect ads_list')
+        logger.info('Start to collect advertisements list')
         for result in results_list:
             date_field = result.find_element(By.CLASS_NAME, 'dates')
             ad_date = datetime.strptime(date_field.text, "%d.%m.%Y")
@@ -32,5 +32,5 @@ class SearchPage:
                                               ad_link=result.find_element(By.CSS_SELECTOR, link_css_selector)
                                               .get_attribute("href")))
 
-        logger.info('Finished to collect ads_list')
+        logger.info('Finished to collect advertisements list')
         return ads_list

@@ -13,10 +13,9 @@ class AdvertisementPage(BasePage):
     }
 
     def go_to_ad_page(self, link):
-        # logger.info('Go to the add page')
+        logger.debug(f'Go to the advertisement page {link}')
         self.driver.get(link)
 
     def get_ad_text(self) -> str:
-        # logger.info('Get ad text')
-        # return self.ad_text.get_text()
+        logger.debug('Get advertisement text with HTML layout')
         return self.ad_text.getAttribute('outerHTML')

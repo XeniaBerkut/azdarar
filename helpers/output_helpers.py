@@ -18,7 +18,8 @@ def convert_ads_to_list_of_lists(advertisement_list):
     return list_of_lists
 
 
-def write_ads_search_result_to_excel(advertisement_list: list[Advertisement], file_name, output_folder):
+def write_ads_search_result_to_excel(advertisement_list: list[Advertisement],
+                                     file_name, output_folder):
     output_folder_excel = output_folder + 'excel/'
     create_directory_for_results(output_folder_excel, output_folder)
     advertisement_list_xlsx_file_path = output_folder_excel + file_name + '.xlsx'

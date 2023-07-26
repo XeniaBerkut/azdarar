@@ -30,7 +30,9 @@ def test_search(driver: WebDriver, advertisement_data: dict):
     logging.info(f'Start search with search data {advertisement.ad_search_string}')
     home_page.search_home_page(advertisement.ad_search_string)
     logging.info('Collect advertisements links for specified search data')
-    advertisements_list = search_page.collect_results(advertisement, test_config['search_date_depth'])
+    advertisements_list = search_page.collect_results(advertisement,
+                                                      test_config['search_date_depth'],
+                                                      test_config['ads_category'])
     logging.info('Go to advertisements pages and collect advertisements outerTexts')
     for ad in advertisements_list:
         ad_page.go_to_ad_page(ad.ad_link)

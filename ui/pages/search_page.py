@@ -18,7 +18,7 @@ class SearchPage(BasePage):
         'main_content_form': ('ID', "content")
     }
 
-    def collect_results(self, advertisement, depth) -> list[Advertisement]:
+    def collect_results(self, advertisement, depth, ads_category) -> list[Advertisement]:
         date_locator = 'dates'
         link_locator = 'h3 > a'
 
@@ -31,7 +31,13 @@ class SearchPage(BasePage):
         for result in results_list:
             date_field = result.find_element(By.CLASS_NAME, date_locator)
             ad_date = datetime.strptime(date_field.text, "%d.%m.%Y")
-            if ad_date > depth_date:
+            tags = result.find_elements(By.TAG_NAME, 'a')
+            advertisement_category_is_right = False
+            for tag in tags:
+                if tag.text == ads_category:
+                    advertisement_category_is_right = True
+
+            if (ad_date > depth_date) & advertisement_category_is_right:
                 ads_list.append(Advertisement(ad_type=advertisement.ad_type,
                                               ad_search_string=advertisement.ad_search_string,
                                               ad_date=ad_date.strftime("%d.%m.%Y"),

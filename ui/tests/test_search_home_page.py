@@ -18,11 +18,11 @@ def get_data(file_name) -> list[dict]:
     return data
 
 
-@pytest.mark.parametrize("advertisement_data", get_data("test_data_search_advertisement.json"))
+@pytest.mark.parametrize("advertisement_data", get_data("test_search_advertisement_data.json"))
 def test_search(driver: WebDriver, advertisement_data: dict):
 
     advertisement = Advertisement(**advertisement_data)
-    test_config = get_data("test_data_search_config.json")
+    test_config = get_data("test_search_advertisement_conf.json")
 
     home_page: HomePage = HomePage(driver)
     search_page: SearchPage = SearchPage(driver)

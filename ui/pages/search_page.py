@@ -1,4 +1,5 @@
 import logging
+from ui.pages.base_page import BasePage
 from datetime import timedelta, datetime
 
 from selenium.webdriver.chrome.webdriver import WebDriver
@@ -8,29 +9,39 @@ from ui.entities.advertisement import Advertisement
 logger = logging.getLogger()
 
 
-class SearchPage:
+class SearchPage(BasePage):
 
     def __init__(self, driver: WebDriver):
-        self.driver = driver
+        super().__init__(driver)
+
+    locators = {
+        'main_content_form': ('ID', "content"),
+        'advertisement_date': ('CLASS_NAME', 'dates'),
+        'advertisement_link': ('CSS', 'h3 > a')
+    }
 
     def collect_results(self, advertisement, depth) -> list[Advertisement]:
         logger.info('Collect search results list')
-        main_form = self.driver.find_element(By.ID, 'content')
-        results_list = main_form.find_elements(By.CLASS_NAME, 'items')
+        # main_form = self.driver.find_element(By.ID, 'content')
+        # results_list = main_form.find_elements(By.CLASS_NAME, 'items')
+        results_list = self.main_content_form.find_elements(By.CLASS_NAME, 'items')
         ads_list = []
         depth_date = datetime.now() - timedelta(days=depth)
 
         logger.info('Start to collect advertisements list')
         for result in results_list:
-            date_field = result.find_element(By.CLASS_NAME, 'dates')
-            ad_date = datetime.strptime(date_field.text, "%d.%m.%Y")
-            link_css_selector = 'h3 > a'
+            # date_field = result.find_element(By.CLASS_NAME, 'dates')
+            # date_field = result.advertisement_date.get_text
+            ad_date = datetime.strptime(result.advertisement_date.get_text(), "%d.%m.%Y")
+            # link_css_selector = 'h3 > a'
             if ad_date > depth_date:
                 ads_list.append(Advertisement(ad_type=advertisement.ad_type,
                                               ad_search_string=advertisement.ad_search_string,
                                               ad_date=ad_date.strftime("%d.%m.%Y"),
-                                              ad_link=result.find_element(By.CSS_SELECTOR, link_css_selector)
-                                              .get_attribute("href")))
+                                              # ad_link=result.find_element(By.CSS_SELECTOR, link_css_selector)
+                                              # .get_attribute("href")
+                                              ad_link=result.advertisement_link.getAttribute("href")
+                                              ))
 
         logger.info('Finished to collect advertisements list')
         return ads_list

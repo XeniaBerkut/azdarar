@@ -15,33 +15,29 @@ class SearchPage(BasePage):
         super().__init__(driver)
 
     locators = {
-        'main_content_form': ('ID', "content"),
-        'advertisement_date': ('CLASS_NAME', 'dates'),
-        'advertisement_link': ('CSS', 'h3 > a')
+        'main_content_form': ('ID', "content")
     }
 
     def collect_results(self, advertisement, depth) -> list[Advertisement]:
+        date_locator = 'dates'
+        link_locator = 'h3 > a'
+
         logger.info('Collect search results list')
-        # main_form = self.driver.find_element(By.ID, 'content')
-        # results_list = main_form.find_elements(By.CLASS_NAME, 'items')
         results_list = self.main_content_form.find_elements(By.CLASS_NAME, 'items')
         ads_list = []
         depth_date = datetime.now() - timedelta(days=depth)
 
         logger.info('Start to collect advertisements list')
         for result in results_list:
-            # date_field = result.find_element(By.CLASS_NAME, 'dates')
-            # date_field = result.advertisement_date.get_text
-            ad_date = datetime.strptime(result.advertisement_date.get_text(), "%d.%m.%Y")
-            # link_css_selector = 'h3 > a'
+            date_field = result.find_element(By.CLASS_NAME, date_locator)
+            ad_date = datetime.strptime(date_field.text, "%d.%m.%Y")
             if ad_date > depth_date:
                 ads_list.append(Advertisement(ad_type=advertisement.ad_type,
                                               ad_search_string=advertisement.ad_search_string,
                                               ad_date=ad_date.strftime("%d.%m.%Y"),
-                                              # ad_link=result.find_element(By.CSS_SELECTOR, link_css_selector)
-                                              # .get_attribute("href")
-                                              ad_link=result.advertisement_link.getAttribute("href")
+                                              ad_link=result.find_element(By.CSS_SELECTOR, link_locator)
+                                              .get_attribute("href")
                                               ))
-
         logger.info('Finished to collect advertisements list')
+
         return ads_list

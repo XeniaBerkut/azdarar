@@ -41,8 +41,6 @@ def test_search(driver: WebDriver, advertisement_data: dict):
     home_page.search(driver, advertisement.ad_search_string)
 
     logging.info('Collect advertisements links for specified search data')
-    advertisements_list = search_page.collect_results(advertisement, test_config['search_date_depth'])
-
     advertisements_list = search_page.collect_results(advertisement,
                                                       test_config['search_date_depth'],
                                                       test_config['ads_category'])

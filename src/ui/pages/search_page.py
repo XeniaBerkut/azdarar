@@ -18,7 +18,7 @@ class SearchPage(BasePage):
         'main_content_form': ('ID', "content")
     }
 
-    def collect_results(self, advertisement, depth) -> list[Advertisement]:
+    def collect_results(self, advertisement, depth, ads_category) -> list[Advertisement]:
         link_locator = 'h3 > a'
 
         logger.info('Collect search results list')

@@ -19,19 +19,9 @@ def get_data(file_name) -> list[dict]:
     return data
 
 
-def get_config(file_name) -> dict:
-    json_path = os.path.join(os.path.dirname(__file__),
-                             file_name)
-    with open(json_path, encoding='utf-8') as json_file:
-        data = json.load(json_file)
-    return data
-
-
 @pytest.mark.parametrize("advertisement_data", get_data("test_search_advertisement_data.json"))
-def test_search(driver: WebDriver, advertisement_data: dict):
-
+def test_search(driver: WebDriver, config: dict, advertisement_data: dict):
     advertisement = Advertisement(**advertisement_data)
-    test_config = get_config("../../../resources/config.json")
 
     home_page: HomePage = HomePage(driver)
     search_page: SearchPage = SearchPage(driver)
@@ -41,7 +31,7 @@ def test_search(driver: WebDriver, advertisement_data: dict):
     home_page.search(driver, advertisement.ad_search_string)
 
     logging.info('Collect advertisements links for specified search data')
-    advertisements_list = search_page.collect_results(advertisement, test_config['search_date_depth'])
+    advertisements_list = search_page.collect_results(advertisement, config['search_date_depth'])
 
     logging.info('Go to advertisements pages and collect advertisements outerTexts')
     for ad in advertisements_list:
@@ -50,7 +40,7 @@ def test_search(driver: WebDriver, advertisement_data: dict):
         ad.ad_text = ad_text
     logging.info('Finished to collect advertisements texts')
 
-    output_folder_name = test_config['output_folder']
+    output_folder_name = config['output_folder']
     logging.info('Write results to html file')
     write_ads_search_result_to_html(advertisements_list, advertisement.ad_type, output_folder_name)
 

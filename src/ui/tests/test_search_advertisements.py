@@ -1,8 +1,8 @@
 import json
 import os
 import logging
-
 import pytest
+
 from selenium.webdriver.chrome.webdriver import WebDriver
 from ui.pages.home_page import HomePage
 from ui.pages.search_page import SearchPage

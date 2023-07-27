@@ -1,5 +1,6 @@
 import logging
 from ui.pages.base_page import BasePage
+from ui.pages.search_page import SearchPage
 
 logger = logging.getLogger()
 
@@ -13,8 +14,9 @@ class HomePage(BasePage):
         'search_button': ('ID', "search-submit")
     }
 
-    def search_home_page(self, advertisement_search_string):
+    def search(self, driver, advertisement_search_string):
         logger.info('Enter data to search')
         self.search_field.send_keys(advertisement_search_string)
         logger.info('Click search button')
         self.search_button.click()
+        return SearchPage(driver)

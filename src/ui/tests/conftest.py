@@ -1,6 +1,8 @@
 import logging
 import sys
 import pytest
+import json
+import os
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -10,7 +12,7 @@ handler = logging.StreamHandler(sys.stdout)
 formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 handler.setFormatter(formatter)
 logger.addHandler(handler)
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 
 @pytest.fixture()

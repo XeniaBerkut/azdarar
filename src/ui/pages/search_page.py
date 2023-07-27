@@ -18,8 +18,7 @@ class SearchPage(BasePage):
         'main_content_form': ('ID', "content")
     }
 
-    def collect_results(self, advertisement, depth, ads_category) -> list[Advertisement]:
-        date_locator = 'dates'
+    def collect_results(self, advertisement, depth) -> list[Advertisement]:
         link_locator = 'h3 > a'
 
         logger.info('Collect search results list')
@@ -29,7 +28,7 @@ class SearchPage(BasePage):
 
         logger.info('Start to collect advertisements list')
         for result in results_list:
-            date_field = result.find_element(By.CLASS_NAME, date_locator)
+            date_field = result.find_element(By.CLASS_NAME, 'dates')
             ad_date = datetime.strptime(date_field.text, "%d.%m.%Y")
             tags = result.find_elements(By.TAG_NAME, 'a')
             advertisement_category_is_right = False

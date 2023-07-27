@@ -7,7 +7,7 @@ from selenium.webdriver.chrome.webdriver import WebDriver
 from ui.pages.home_page import HomePage
 from ui.pages.search_page import SearchPage
 from ui.pages.advertisement_page import AdvertisementPage
-from helpers.output_helpers import write_ads_search_result_to_excel, write_ads_search_result_to_html
+from helpers.output_helpers import write_ads_search_result_to_html
 from ui.entities.advertisement import Advertisement
 
 
@@ -27,7 +27,7 @@ def get_config(file_name) -> dict:
     return data
 
 
-@pytest.mark.parametrize("advertisement_data", get_data("debug_search_advertisement_data.json"))
+@pytest.mark.parametrize("advertisement_data", get_data("test_search_advertisement_data.json"))
 def test_search(driver: WebDriver, advertisement_data: dict):
 
     advertisement = Advertisement(**advertisement_data)
@@ -51,8 +51,6 @@ def test_search(driver: WebDriver, advertisement_data: dict):
     logging.info('Finished to collect advertisements texts')
 
     output_folder_name = test_config['output_folder']
-    logging.info('Write results to excel')
-    write_ads_search_result_to_excel(advertisements_list, advertisement.ad_type, output_folder_name)
     logging.info('Write results to html file')
     write_ads_search_result_to_html(advertisements_list, advertisement.ad_type, output_folder_name)
 

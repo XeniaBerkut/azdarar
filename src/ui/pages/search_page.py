@@ -19,8 +19,6 @@ class SearchPage(BasePage):
     }
 
     def collect_results(self, advertisement, depth) -> list[Advertisement]:
-        link_locator = 'h3 > a'
-
         logger.info('Collect search results list')
         results_list = self.main_content_form.find_elements(By.CLASS_NAME, 'items')
         ads_list = []
@@ -34,7 +32,7 @@ class SearchPage(BasePage):
                 ads_list.append(Advertisement(ad_type=advertisement.ad_type,
                                               ad_search_string=advertisement.ad_search_string,
                                               ad_date=ad_date.strftime("%d.%m.%Y"),
-                                              ad_link=result.find_element(By.CSS_SELECTOR, link_locator)
+                                              ad_link=result.find_element(By.CSS_SELECTOR, 'h3 > a')
                                               .get_attribute("href")
                                               ))
         logger.info('Finished to collect advertisements list')

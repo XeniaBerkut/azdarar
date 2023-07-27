@@ -19,7 +19,7 @@ def get_data(file_name) -> list[dict]:
     return data
 
 
-@pytest.mark.parametrize("advertisement_data", get_data("test_search_advertisement_data.json"))
+@pytest.mark.parametrize("advertisement_data", get_data("test_search_advertisements_data.json"))
 def test_search(driver: WebDriver, config: dict, advertisement_data: dict):
     advertisement = Advertisement(**advertisement_data)
 

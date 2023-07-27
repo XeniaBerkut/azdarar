@@ -19,7 +19,6 @@ class SearchPage(BasePage):
     }
 
     def collect_results(self, advertisement, depth) -> list[Advertisement]:
-        date_locator = 'dates'
         link_locator = 'h3 > a'
 
         logger.info('Collect search results list')
@@ -29,7 +28,7 @@ class SearchPage(BasePage):
 
         logger.info('Start to collect advertisements list')
         for result in results_list:
-            date_field = result.find_element(By.CLASS_NAME, date_locator)
+            date_field = result.find_element(By.CLASS_NAME, 'dates')
             ad_date = datetime.strptime(date_field.text, "%d.%m.%Y")
             if ad_date > depth_date:
                 ads_list.append(Advertisement(ad_type=advertisement.ad_type,

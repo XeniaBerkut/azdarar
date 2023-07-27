@@ -12,9 +12,10 @@ class AdvertisementPage(BasePage):
         'ad_text': ('ID', 'content')
     }
 
-    def go_to_ad_page(self, link):
+    def go_to_ad_page(self, driver, link):
         logger.debug(f'Go to the advertisement page {link}')
         self.driver.get(link)
+        return AdvertisementPage(driver)
 
     def get_ad_text(self) -> str:
         logger.debug('Get advertisement text with HTML layout')

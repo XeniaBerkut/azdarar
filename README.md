@@ -34,5 +34,5 @@ export PYTHONPATH=ui:$PYTHONPATH
 ```
 Run test
 ```bash
-pytest ui/tests/test_search_home_page.py
+pytest ui/tests/test_search_advertisements.py
 ```

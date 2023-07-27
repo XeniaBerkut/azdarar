@@ -1,6 +1,8 @@
 import logging
 import sys
 import pytest
+import json
+import os
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -18,7 +20,7 @@ def driver():
     logger.info("Running class setUp")
 
     chrome_options = Options()
-    chrome_options.add_argument('--headless')
+    # chrome_options.add_argument('--headless')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
     driver = webdriver.Chrome(chrome_options)

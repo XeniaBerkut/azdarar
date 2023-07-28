@@ -1,6 +1,6 @@
 import logging
 
-from ui.elements.ad_link import AdLink
+from ui.elements.avertisement_item import AdvertisementItem
 from ui.pages.base_page import BasePage
 from datetime import timedelta, datetime
 
@@ -9,10 +9,6 @@ from selenium.webdriver.common.by import By
 from ui.entities.advertisement import Advertisement
 
 logger = logging.getLogger()
-
-
-def get_ad_link(result) -> str:
-    return result.find_element(By.CSS_SELECTOR, 'h3 > a').get_attribute("href")
 
 
 class SearchPage(BasePage):
@@ -24,19 +20,20 @@ class SearchPage(BasePage):
         'main_content_form': ('ID', "content")
     }
 
-    def get_result_list(self) -> list[AdLink]:
-        return self.main_content_form.find_elements(By.CLASS_NAME, 'items')
+    def get_advertisements_list(self) -> list[AdvertisementItem]:
+        raw_elements = self.main_content_form.find_elements(By.CLASS_NAME, 'items')
+        advertisements = [AdvertisementItem(element) for element in raw_elements]
+        return advertisements
 
     def collect_results(self, advertisement, depth) -> list[Advertisement]:
         logger.info('Collect search results list')
-        results_list = self.get_result_list()
+        search_results_list = self.get_advertisements_list()
         ads_list = []
         depth_date = datetime.now() - timedelta(days=depth)
 
         logger.info('Start to collect advertisements list')
-        for result in results_list:
-            date_field = result.find_element(By.CLASS_NAME, 'dates')
-            ad_date = datetime.strptime(date_field.text, "%d.%m.%Y")
+        for result in search_results_list:
+            ad_date = result.get_ad_date()
             if ad_date > depth_date:
                 ads_list.append(Advertisement(ad_type=advertisement.ad_type,
                                               ad_search_string=advertisement.ad_search_string,

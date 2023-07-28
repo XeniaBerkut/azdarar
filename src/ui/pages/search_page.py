@@ -34,14 +34,7 @@ class SearchPage(BasePage):
         logger.info('Start to collect advertisements list')
         for result in search_results_list:
             ad_date = result.get_ad_date()
-            if ad_date > depth_date:
-            tags = result.find_elements(By.TAG_NAME, 'a')
-            advertisement_category_is_right = False
-            for tag in tags:
-                if tag.text == ads_category:
-                    advertisement_category_is_right = True
-
-            if (ad_date > depth_date) & advertisement_category_is_right:
+            if (ad_date > depth_date) & result.advertisement_category_is_right(ads_category):
                 ads_list.append(Advertisement(ad_type=advertisement.ad_type,
                                               ad_search_string=advertisement.ad_search_string,
                                               ad_date=ad_date.strftime("%d.%m.%Y"),
@@ -49,4 +42,4 @@ class SearchPage(BasePage):
                                               ))
         logger.info('Finished to collect advertisements list')
 
-        return ads_list
+        return sorted(ads_list, key=lambda x: x.ad_date, reverse=True)

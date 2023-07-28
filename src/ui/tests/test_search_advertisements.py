@@ -24,11 +24,10 @@ def test_search(driver: WebDriver, config: dict, advertisement_data: dict):
     advertisement = Advertisement(**advertisement_data)
 
     home_page: HomePage = HomePage(driver)
-    search_page: SearchPage = SearchPage(driver)
     ad_page: AdvertisementPage = AdvertisementPage(driver)
 
     logging.info(f'Start search with search data {advertisement.ad_search_string}')
-    home_page.search(driver, advertisement.ad_search_string)
+    search_page = home_page.search(driver, advertisement.ad_search_string)
 
     logging.info('Collect advertisements links for specified search data')
     advertisements_list = search_page.collect_results(advertisement, config['search_date_depth'])

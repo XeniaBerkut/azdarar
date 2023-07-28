@@ -1,6 +1,8 @@
 import logging
 import sys
 import pytest
+import json
+import os
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -10,7 +12,7 @@ handler = logging.StreamHandler(sys.stdout)
 formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 handler.setFormatter(formatter)
 logger.addHandler(handler)
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 
 @pytest.fixture()
@@ -29,3 +31,11 @@ def driver():
 
     logger.info("Running class tearDown")
     driver.quit()
+
+
+@pytest.fixture()
+def config() -> dict:
+    json_path = os.path.join(os.path.dirname(__file__), "../../../resources/config.json")
+    with open(json_path, encoding='utf-8') as json_file:
+        data = json.load(json_file)
+    return data

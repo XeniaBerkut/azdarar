@@ -1,6 +1,7 @@
 !/.idea/
 
 !/chromedriver_win32/
-!/ui/tests/test.xlsx
-!/ui/tests/azdarar_search_results.xlsx
-!/ui/tests/azdarar_search_results/
+!/src/ui/tests/test.xlsx
+!/src/ui/tests/azdarar_search_results.xlsx
+!/src/ui/tests/azdarar_search_results/
+!/src/ui/tests/debug_search_advertisement_data.json

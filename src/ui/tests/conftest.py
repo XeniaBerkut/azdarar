@@ -31,3 +31,11 @@ def driver():
 
     logger.info("Running class tearDown")
     driver.quit()
+
+
+@pytest.fixture()
+def config() -> dict:
+    json_path = os.path.join(os.path.dirname(__file__), "../../../resources/config.json")
+    with open(json_path, encoding='utf-8') as json_file:
+        data = json.load(json_file)
+    return data

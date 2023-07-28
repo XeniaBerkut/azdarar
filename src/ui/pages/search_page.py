@@ -1,4 +1,6 @@
 import logging
+
+from ui.elements.avertisement_item import AdvertisementItem
 from ui.pages.base_page import BasePage
 from datetime import timedelta, datetime
 
@@ -18,18 +20,21 @@ class SearchPage(BasePage):
         'main_content_form': ('ID', "content")
     }
 
-    def collect_results(self, advertisement, depth, ads_category) -> list[Advertisement]:
-        link_locator = 'h3 > a'
+    def get_advertisements_list(self) -> list[AdvertisementItem]:
+        raw_elements = self.main_content_form.find_elements(By.CLASS_NAME, 'items')
+        advertisements = [AdvertisementItem(element) for element in raw_elements]
+        return advertisements
 
+    def collect_results(self, advertisement, depth, ads_category) -> list[Advertisement]:
         logger.info('Collect search results list')
-        results_list = self.main_content_form.find_elements(By.CLASS_NAME, 'items')
+        search_results_list = self.get_advertisements_list()
         ads_list = []
         depth_date = datetime.now() - timedelta(days=depth)
 
         logger.info('Start to collect advertisements list')
-        for result in results_list:
-            date_field = result.find_element(By.CLASS_NAME, 'dates')
-            ad_date = datetime.strptime(date_field.text, "%d.%m.%Y")
+        for result in search_results_list:
+            ad_date = result.get_ad_date()
+            if ad_date > depth_date:
             tags = result.find_elements(By.TAG_NAME, 'a')
             advertisement_category_is_right = False
             for tag in tags:
@@ -40,8 +45,7 @@ class SearchPage(BasePage):
                 ads_list.append(Advertisement(ad_type=advertisement.ad_type,
                                               ad_search_string=advertisement.ad_search_string,
                                               ad_date=ad_date.strftime("%d.%m.%Y"),
-                                              ad_link=result.find_element(By.CSS_SELECTOR, link_locator)
-                                              .get_attribute("href")
+                                              ad_link=result.get_ad_link()
                                               ))
         logger.info('Finished to collect advertisements list')
 

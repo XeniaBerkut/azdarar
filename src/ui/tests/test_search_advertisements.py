@@ -5,7 +5,7 @@ import pytest
 
 from selenium.webdriver.chrome.webdriver import WebDriver
 
-from ui.entities.eniums.advertisements_categories import Categories
+from ui.entities.enums.advertisements_categories import Categories
 from ui.pages.home_page import HomePage
 from ui.pages.advertisement_page import AdvertisementPage
 from helpers.output_helpers import write_ads_search_result_to_html

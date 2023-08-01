@@ -1,6 +1,7 @@
 import logging
 
 from ui.elements.avertisement_item import AdvertisementItem
+from ui.entities.enums.advertisements_categories import Categories
 from ui.pages.base_page import BasePage
 from datetime import timedelta, datetime
 
@@ -25,7 +26,8 @@ class SearchPage(BasePage):
         advertisements = [AdvertisementItem(element) for element in raw_elements]
         return advertisements
 
-    def collect_results(self, advertisement, depth, ads_category) -> list[Advertisement]:
+    def collect_results(
+            self, advertisement: Advertisement, depth: int, ads_category: Categories) -> list[Advertisement]:
         logger.info('Collect search results list')
         search_results_list = self.get_advertisements_list()
         ads_list = []

@@ -4,8 +4,9 @@ import logging
 import pytest
 
 from selenium.webdriver.chrome.webdriver import WebDriver
+
+from ui.entities.enums.advertisements_categories import Categories
 from ui.pages.home_page import HomePage
-from ui.pages.search_page import SearchPage
 from ui.pages.advertisement_page import AdvertisementPage
 from helpers.output_helpers import write_ads_search_result_to_html
 from ui.entities.advertisement import Advertisement
@@ -30,7 +31,9 @@ def test_search(driver: WebDriver, config: dict, advertisement_data: dict):
     search_page = home_page.search(driver, advertisement.ad_search_string)
 
     logging.info('Collect advertisements links for specified search data')
-    advertisements_list = search_page.collect_results(advertisement, config['search_date_depth'])
+    advertisements_list = search_page.collect_results(advertisement,
+                                                      config['search_date_depth'],
+                                                      Categories.PUBLIC_AUCTIONS)
 
     logging.info('Go to advertisements pages and collect advertisements outerTexts')
     for ad in advertisements_list:

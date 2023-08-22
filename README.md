@@ -1,5 +1,14 @@
 This project was created to automate user actions and collect advertisements from armenian news website https://www.azdarar.am/. Here was used automation testing pattern such as PageObjects.
 
+To sent search results to an email, you need to create ui/tests/secrets.json and put there an access token:
+```
+{
+  "from_email": "your_email@gmail.com",
+  "token": "access token",
+  "to_email": "recipient_email"
+}
+```
+
 
 ## Run the project
 How to build and run the project

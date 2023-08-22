@@ -5,3 +5,4 @@
 !/src/ui/tests/azdarar_search_results.xlsx
 !/src/ui/tests/azdarar_search_results/
 !/src/ui/tests/debug_search_advertisements_data.json
+!/src/ui/tests/secrets.json

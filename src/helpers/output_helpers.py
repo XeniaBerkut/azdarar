@@ -70,7 +70,7 @@ def send_email(data_folder_path: str, attachments_directory_path: str, email_bod
     email_data = get_test_data_from_json(os.path.join(data_folder_path, "secrets.json"))
     message = MIMEMultipart("alternative")
     message["Subject"] = ("Azdarar Digest: " + start_searching_date(search_date_depth) +
-                          " - " + datetime.datetime.now().strftime("%Y-%m-%d"))
+                          " - " + datetime.datetime.now().strftime("%d.%m.%Y"))
     message["From"] = email_data["from_email"]
     message["To"] = email_data["to_email"]
 
@@ -104,4 +104,4 @@ def start_searching_date(search_date_depth):
     current_date = datetime.datetime.now()
     days_before = datetime.timedelta(days=search_date_depth)
     date_10_days_ago = current_date - days_before
-    return date_10_days_ago.strftime("%Y-%m-%d")
+    return date_10_days_ago.strftime("%d.%m.%Y")

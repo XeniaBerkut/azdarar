@@ -5,11 +5,11 @@ from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-from helpers.test_data_helpers import get_test_data_from_json
-from ui.entities.advertisement import Advertisement
+from src.helpers.test_data_helpers import get_test_data_from_json
+from src.ui.entities.advertisement import Advertisement
 import os
 
-from ui.tests.conftest import logger
+from src.ui.tests.conftest import logger
 import smtplib
 
 

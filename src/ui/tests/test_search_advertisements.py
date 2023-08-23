@@ -4,12 +4,12 @@ import pytest
 
 from selenium.webdriver.chrome.webdriver import WebDriver
 
-from helpers.test_data_helpers import get_test_data_from_json
-from ui.entities.enums.advertisements_categories import Categories
-from ui.pages.home_page import HomePage
-from ui.pages.advertisement_page import AdvertisementPage
-from helpers.output_helpers import write_ads_search_result_to_html, send_email
-from ui.entities.advertisement import Advertisement
+from src.helpers.test_data_helpers import get_test_data_from_json
+from src.ui.entities.enums.advertisements_categories import Categories
+from src.ui.pages.home_page import HomePage
+from src.ui.pages.advertisement_page import AdvertisementPage
+from src.helpers.output_helpers import write_ads_search_result_to_html, send_email
+from src.ui.entities.advertisement import Advertisement
 
 logger = logging.getLogger()
 

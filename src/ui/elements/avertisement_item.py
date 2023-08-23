@@ -3,7 +3,7 @@ from datetime import datetime
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 
-from ui.entities.enums.advertisements_categories import Categories
+from src.ui.entities.enums.advertisements_categories import Categories
 
 
 class AdvertisementItem:

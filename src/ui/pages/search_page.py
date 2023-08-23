@@ -1,13 +1,13 @@
 import logging
 
-from ui.elements.avertisement_item import AdvertisementItem
-from ui.entities.enums.advertisements_categories import Categories
-from ui.pages.base_page import BasePage
+from src.ui.elements.avertisement_item import AdvertisementItem
+from src.ui.entities.enums.advertisements_categories import Categories
+from src.ui.pages.base_page import BasePage
 from datetime import timedelta, datetime
 
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
-from ui.entities.advertisement import Advertisement
+from src.ui.entities.advertisement import Advertisement
 
 logger = logging.getLogger()
 

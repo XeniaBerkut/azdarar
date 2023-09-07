@@ -1,10 +1,15 @@
+import logging
+
 import xlsxwriter
+
+
 from ui.entities.advertisement import Advertisement
 import os
+logger = logging.getLogger(__name__)
 
 
 def create_directory_for_results(output_folder, parent_folder):
-    logging.info('Check if directory for output exist and create if not')
+    logger.info('Check if directory for output exist and create if not')
     if not os.path.isdir(parent_folder):
         os.mkdir(parent_folder)
     if not os.path.isdir(output_folder):

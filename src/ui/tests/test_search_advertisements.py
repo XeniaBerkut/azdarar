@@ -27,7 +27,7 @@ def get_config(file_name) -> dict:
     return data
 
 
-@pytest.mark.parametrize("advertisement_data", get_data("debug_search_advertisement_data.json"))
+@pytest.mark.parametrize("advertisement_data", get_data("test_search_advertisement_data.json"))
 def test_search(driver: WebDriver, advertisement_data: dict):
 
     advertisement = Advertisement(**advertisement_data)

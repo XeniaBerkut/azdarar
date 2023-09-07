@@ -53,10 +53,10 @@ def test_send_email(config):
     attachments_directory_path = os.path.join(data_folder_path, "azdarar_search_results")
     email_body_data = get_test_data_from_json(test_data_file_path)
 
+    logger.info("Sending email with results")
+    send_email(data_folder_path, attachments_directory_path, email_body_data, config["search_date_depth"])
+
     logger.info("Check if existed files count is as expected")
     expected_results_count = len(email_body_data)
     results_count = len(os.listdir(attachments_directory_path))
     assert expected_results_count == results_count
-
-    logger.info("Sending email with results")
-    send_email(data_folder_path, attachments_directory_path, email_body_data, config["search_date_depth"])

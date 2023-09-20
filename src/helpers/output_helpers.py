@@ -3,7 +3,7 @@ import logging
 import xlsxwriter
 
 
-from ui.entities.advertisement import Advertisement
+from src.ui.entities.advertisement import Advertisement
 import os
 logger = logging.getLogger(__name__)
 

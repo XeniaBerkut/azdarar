@@ -1,10 +1,10 @@
 import logging
-from ui.pages.base_page import BasePage
+from src.ui.pages.base_page import BasePage
 from datetime import timedelta, datetime
 
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.common.by import By
-from ui.entities.advertisement import Advertisement
+from src.ui.entities.advertisement import Advertisement
 
 logger = logging.getLogger()
 

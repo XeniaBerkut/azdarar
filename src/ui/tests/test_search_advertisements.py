@@ -4,11 +4,11 @@ import logging
 
 import pytest
 from selenium.webdriver.chrome.webdriver import WebDriver
-from ui.pages.home_page import HomePage
-from ui.pages.search_page import SearchPage
-from ui.pages.advertisement_page import AdvertisementPage
-from helpers.output_helpers import write_ads_search_result_to_excel, write_ads_search_result_to_html
-from ui.entities.advertisement import Advertisement
+from src.ui.pages.home_page import HomePage
+from src.ui.pages.search_page import SearchPage
+from src.ui.pages.advertisement_page import AdvertisementPage
+from src.helpers.output_helpers import write_ads_search_result_to_excel, write_ads_search_result_to_html
+from src.ui.entities.advertisement import Advertisement
 
 
 def get_data(file_name) -> list[dict]:

@@ -1,6 +1,6 @@
 import logging
-from ui.pages.base_page import BasePage
-from ui.pages.search_page import SearchPage
+from src.ui.pages.base_page import BasePage
+from src.ui.pages.search_page import SearchPage
 
 logger = logging.getLogger()
 

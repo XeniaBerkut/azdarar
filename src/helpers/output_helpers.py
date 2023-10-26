@@ -96,6 +96,7 @@ def send_email(data_folder_path: str, attachments_directory_path: str, email_bod
 
     with smtplib.SMTP(smtp_server, smtp_port) as server:
         server.starttls()
+        # to generate a new token go to google profile Security->2a auth->apps pwd
         server.login(smtp_username, smtp_password)
         server.send_message(message)
 

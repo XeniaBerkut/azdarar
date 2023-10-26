@@ -1,7 +1,7 @@
 [
   {
-    "ad_type": "auction_apartment",
-    "ad_search_string": "աճուրդ բնակարան"
+    "ad_type": "apartment",
+    "ad_search_string": "բնակարան"
   },
   {
     "ad_type": "rescheduled_auction",
@@ -40,7 +40,7 @@
     "ad_search_string": "բնակելի"
   },
   {
-    "ad_type": "residential_house",
-    "ad_search_string": "բնակելի տուն"
+    "ad_type": "house",
+    "ad_search_string": "տուն"
   }
 ]

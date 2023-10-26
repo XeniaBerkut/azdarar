@@ -14,10 +14,11 @@ from src.ui.entities.advertisement import Advertisement
 logger = logging.getLogger()
 
 test_data_file_path = os.path.join(os.path.dirname(__file__), "test_search_advertisements_data.json")
+test_data = get_test_data_from_json(test_data_file_path)
 
 
 @pytest.mark.run(order=1)
-@pytest.mark.parametrize("advertisement_data", get_test_data_from_json(test_data_file_path))
+@pytest.mark.parametrize("advertisement_data", test_data, ids=[data["ad_type"] for data in test_data])
 def test_search(driver: WebDriver, config: dict, advertisement_data: dict):
     advertisement = Advertisement(**advertisement_data)
 
